@@ -6,7 +6,7 @@
 4. rspec
 5. rails s
 
-Integrate with MailChimp
+# Integrate with MailChimp
 * Send through their name/email
 * Create/use your own MailChimp account if needed
 * Unit and Integration (actually sends to MailChimp) specs
