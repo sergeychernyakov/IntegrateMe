@@ -2,7 +2,7 @@ class IntegrationsController < ApplicationController
   before_action :set_integration, only: [:show, :edit, :update, :destroy]
   
   responders :flash
-  respond_to :html
+  respond_to :html, :json
 
   #
   # Decorates integration
