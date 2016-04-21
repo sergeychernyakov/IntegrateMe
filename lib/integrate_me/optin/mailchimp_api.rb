@@ -20,19 +20,10 @@ module IntegrateMe
       # Call to trigger integration
       #
       # @returns [Boolean] result
-      def execute(contact)
+      def execute(contact, list = nil)
         @contact = contact
+        @list = list
         list_subscribe
-      end
-
-      protected
-
-      #
-      # Mechanize agent
-      #
-      # @returns [Mechanize] agent
-      def agent
-        @agent ||= Mailchimp::API.new(api_key)
       end
 
       #
@@ -47,12 +38,22 @@ module IntegrateMe
         end
       end
 
+      protected
+
+      #
+      # Mechanize agent
+      #
+      # @returns [Mechanize] agent
+      def agent
+        @agent ||= Mailchimp::API.new(api_key)
+      end
+
       #
       # Gets first list from mailchimp
       #
       # @returns [String] list id
-      def list
-        lists.first
+      def list_to_subscribe
+        list || lists.first
       end
 
       #
@@ -60,9 +61,9 @@ module IntegrateMe
       #
       # @returns [Boolean] result
       def list_subscribe
-        return false unless list.present?
+        return false unless list_to_subscribe.present?
         agent.lists.subscribe(
-          list[0], { email: contact.email }, merge_vars, 'html', false
+          list_to_subscribe[0], { email: contact.email }, merge_vars, 'html', false
         )
       rescue Mailchimp::ListAlreadySubscribedError
         Rails.logger.info "#{contact.email} is already subscribed to the list"

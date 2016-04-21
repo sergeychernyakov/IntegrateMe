@@ -32,14 +32,6 @@ class Integration < ActiveRecord::Base
   end
 
   #
-  # Queyes an integration job
-  #
-  # @param [Contact] contact
-  def queue(contact)
-    true
-  end
-
-  #
   # Integrated application class
   #
   # @return [Class] class
@@ -48,6 +40,22 @@ class Integration < ActiveRecord::Base
   rescue => e
     Rails.logger.warn(e)
     nil
+  end
+
+  #
+  # List of subscriptions
+  #
+  # @return [Array] lists
+  def lists
+    []
+  end
+
+  #
+  # Queyes an integration job
+  #
+  # @param [Contact] contact
+  def queue(contact)
+    true
   end
 
   #

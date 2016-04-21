@@ -16,6 +16,10 @@ module IntegrateMe
       #   @return [String]
       attr_accessor :contact
 
+      # @!attribute [r] list
+      #   @return [String]
+      attr_accessor :list
+
       #
       # Initialises an integration
       #

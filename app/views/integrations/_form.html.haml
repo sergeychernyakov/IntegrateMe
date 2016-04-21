@@ -1,5 +1,6 @@
 = form_for @integration, url: @integration.new_record? ? integrations_path : integration_path(@integration),
   as: :integration, html: { class: "form form-horizontal integration" } do |f|
+  = f.hidden_field :id, 'ng-model' => :id
   .form-group
     = f.label :api_key, class: 'control-label col-lg-2'
     .col-lg-10.input-group
